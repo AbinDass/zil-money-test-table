@@ -1,0 +1,94 @@
+<div class="flex justify-center mt-16">
+  <table class="">
+    <thead>
+      <tr class="h-10 bg-gray-200 text-black/50 capitalize">
+        <th class="text-left">name</th>
+        <th class="text-left">company name</th>
+        <th class="text-left">designation</th>
+      </tr>
+      <tr>
+        <th class="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="absolute top-2 left-2"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+          <input
+            type="text"
+            class="bg-gray-300/50 rounded pl-10"
+            placeholder="search"
+            [(ngModel)]="name"
+          />
+        </th>
+        <th class="relative h-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="absolute top-2 left-2"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+          <input
+            type="text"
+            class="bg-gray-300/50 rounded pl-10"
+            placeholder="search"
+            [(ngModel)]="company"
+          />
+        </th>
+        <th class="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="absolute top-2 left-2"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+          <input
+            type="text"
+            class="bg-gray-300/50 rounded pl-10"
+            placeholder="search"
+            [(ngModel)]="designation"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let user of (userData$ | async) || []
+            | search : name : 'name'
+            | search : company : 'company'
+            | search : designation : 'designation'
+        "
+        [ngClass]="{
+          'bg-green-300/40': user.company.designation === 'angular Developer'
+        }"
+        class="border-b border-black"
+      > 
+        <td>
+          <p class="font-medium">{{ user.name }}</p>
+          <p>{{ user.email }}</p>
+        </td>
+        <td class="font-medium">{{ user.company.name }}</td>
+        <td class="font-medium">{{ user.company.designation }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
